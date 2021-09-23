@@ -69,6 +69,10 @@ class Mgc_tree(object):
                 temp_list=lazy_pinyin(ca)
                 m=temp_list[0]
                 m=m.lower()
+                if '\u4e00' <= ca <= '\u9fff' and m not in p.son:
+                    p=self.root
+                if ((ca >= 'A' and ca <= 'Z') or (ca >= 'a' and ca <= 'z')) and m not in p.son:
+                    p=self.root
                 if m in p.son and p is self.root:
                     start=i
                 if m in p.son:
