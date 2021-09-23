@@ -100,9 +100,21 @@ class Mgc_tree(object):
                 fp.write(i)
                 fp.write('\n')
 if __name__ == '__main__':
+    if len(sys.argv)!=4:
+        print("命令行参数错误！")
+        exit(0)
     word_path=sys.argv[1]
     org_path=sys.argv[2]
     ans_path=sys.argv[3]
+    if os.access(word_path, os.F_OK)!=True:
+        print("word_path is not exist.")#敏感词库不存在
+        exit(0)
+    if os.access(org_path, os.F_OK)!=True:
+        print("org_path is not exist.")#测试文本不存在
+        exit(0)
+    if os.access(ans_path, os.F_OK)!=True:
+        print("ans_path is not exist.")#输出文本不存在
+        exit(0)
     with open(word_path, encoding='utf-8') as f1:
         #读取敏感词词库
         ws = f1.read().split('\n')
