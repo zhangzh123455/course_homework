@@ -212,12 +212,16 @@ p2_n1 = font.render(len21, True, black)
 p2_n2 = font.render(len22, True, red)
 p2_n3 = font.render(len23, True, black)
 p2_n4 = font.render(len24, True, red)
-print(poker)
+pygame.mixer.init()
+pygame.mixer.music.load('pictures and font/heroesofwarcraft.mp3')
+pygame.mixer.music.play(-1)
 # 双人对战的按钮
 window.blit(background1, (0, 0))
 window.blit(gametitle, (win_width / 2 - 225, 0.15 * win_height))
 d_button = button.Button('双人对战', (win_width / 2 - 80, win_height / 2 - 30), (160, 50), titlecolor, blue)
 d_button.draw(window)
+j_button = button.Button('人机对战', (win_width / 2 - 80, win_height / 2 + 60), (160, 50), titlecolor, blue)
+j_button.draw(window)
 pygame.display.update()
 # 判断游戏是否开始的布尔值
 is_begin = False
@@ -415,6 +419,8 @@ def fapai2():
 
 is_over = False
 returnzcd = False
+
+
 while True:
     # 事件检测
     endll = len(poker)
@@ -557,7 +563,6 @@ while True:
             movplaced_speed = 1
             window.blit(text8, (win_width / 2 - x / 2, win_height / 2 - y))
             pygame.display.update()
-            print(p)
             is_player1 = False
             is_movplaced = False
         # 玩家2摸牌
@@ -604,7 +609,6 @@ while True:
             else:
                 # 当花色一样时
                 if int(p / 13) == int(t_p1 / 13):
-                    print('=========')
                     for i in range(l2):
                         pii = placed_poker.pop()
                         n1 = poker_nn(pii)
@@ -669,7 +673,6 @@ while True:
             movplaced_speed = 1
             window.blit(text7, (win_width / 2 - x / 2, win_height / 2 - y))
             pygame.display.update()
-            print(p)
             is_movplaced = False
             is_player1 = True
         # 玩家1打出手中的黑桃牌
