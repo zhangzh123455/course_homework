@@ -2,6 +2,7 @@
 Python
 二、编译环境
 Python3.8
+pygame==2.0.2
 三、编译方法
 在pycharm，vscode进行比编译
 四、使用方法
