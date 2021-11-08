@@ -1,0 +1,36 @@
+from flask import Flask, request, jsonify, render_template, json
+
+app = Flask(__name__)
+datadict = {"北京": 100, "上海": 90, "福建": 80, "海南": 50}
+app.config['JSON_AS_ASCII'] = False
+
+
+@app.route('/testjson1', methods=['POST'])
+def testjson1():
+    try:
+        myjson = request.get_json()
+        print(myjson)
+        get_address = myjson.get("address")
+        get_num = datadict[get_address]
+        print(get_address, get_num)
+        return jsonify(address=get_address, num=get_num)
+    except Exception as e:
+        print(e)
+        return jsonify(msg="出错了")
+
+
+@app.route('/testjson2')
+def testjson2():
+    try:
+        get_address = "北京"
+        get_num = 123
+        d = {"北京": 123}
+        # return json.dumps(d, ensure_ascii=False)
+        return jsonify(address=get_address, num=get_num)
+    except Exception as e:
+        print(e)
+        return jsonify(msg="出错了")
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5200, debug=True)
