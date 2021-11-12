@@ -1,0 +1,17 @@
+import flask_sqlalchemy
+
+from databasetable import MilkteaShop, MilkteaGood, db, app
+import json
+
+from flask import Flask, redirect, request, jsonify
+
+db.init_app(app)
+app.config['JSON_AS_ASCII'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+city_list = []
+results = MilkteaShop.query.all()
+for i in results:
+    if i.city not in city_list:
+        city_list.append(i.city)
+print(city_list)
